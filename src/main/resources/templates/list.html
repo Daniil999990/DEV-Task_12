@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+<head>
+    <meta charset="UTF-8">
+    <title>Список нотаток</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Notatki</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/note/list">Список</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/note/edit">Створити</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <main role="main">
+
+        <section class="py-5 text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Список нотаток</h1>
+                <p class="lead">
+                    Тут ви можете переглянути список ваших нотаток.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Назва</th>
+                                <th>Текст</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <#list notes as note>
+                            <tr>
+                                <td>${note.id}</td>
+                                <td>${note.title}</td>
+                                <td>${note.content}</td>
+                                <td>
+                                    <a href="/note/delete?id=${note.id}" class="btn btn-danger">Видалити</a>
+                                </td>
+                                <td>
+                                    <a href="/note/edit?id=${note.id}" class="btn btn-primary">Редагувати</a>
+                                </td>
+                            </tr>
+                            </list>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
