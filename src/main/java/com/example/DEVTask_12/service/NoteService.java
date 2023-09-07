@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class NoteService {
 
-    private NoteRepository noteRepository;
+    private final NoteRepository noteRepository;
 
     public NoteService(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
@@ -20,7 +20,7 @@ public class NoteService {
     }
 
     public Note getById(Long id) {
-        return noteRepository.findById(id).orElseGet(() -> null);
+        return noteRepository.findById(id).orElse(null);
     }
 
     public Note add(Note note) {

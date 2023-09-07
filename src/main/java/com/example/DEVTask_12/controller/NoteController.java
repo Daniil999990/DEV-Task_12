@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/note")
 public class NoteController {
@@ -18,15 +20,18 @@ public class NoteController {
 
     @GetMapping("/list")
     public String listNotes(Model model) {
-        model.addAttribute("notes", noteService.findAll());
+        List<Note> notes = noteService.findAll();
+        model.addAttribute("notes", notes);
         return "list";
     }
 
-    @GetMapping("/edit")
-    public String editNote(@RequestParam("id") Long id, Model model) {
-        model.addAttribute("note", noteService.getById(id));
+    @GetMapping("/edit/{id}")
+    public String editNoteForm(@PathVariable("id") Long id, Model model) {
+        Note note = noteService.getById(id);
+        model.addAttribute("note", note);
         return "edit";
     }
+
 
     @PostMapping("/edit")
     public String saveNote(@ModelAttribute Note note) {
@@ -34,8 +39,20 @@ public class NoteController {
         return "redirect:/note/list";
     }
 
-    @PostMapping("/delete")
-    public String deleteNote(@RequestParam("id") Long id) {
+    @GetMapping("/create")
+    public String createNoteForm(Model model) {
+        model.addAttribute("note", new Note());
+        return "create";
+    }
+
+    @PostMapping("/create")
+    public String createNote(@ModelAttribute Note note) {
+        noteService.add(note);
+        return "redirect:/note/list";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteNote(@PathVariable("id") Long id) {
         noteService.deleteById(id);
         return "redirect:/note/list";
     }

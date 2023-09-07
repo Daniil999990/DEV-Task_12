@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+<head>
+    <meta charset="UTF-8">
+    <title>Створення нової нотатки</title>
+</head>
+<body>
+
+<h1>Створення нової нотатки</h1>
+
+<form method="post" th:action="@{/note/create}">
+    <label for="title">Назва:</label>
+    <input type="text" id="title" name="title">
+    <br>
+    <label for="content">Зміст:</label>
+    <textarea id="content" name="content"></textarea>
+    <br>
+    <button type="submit">Створити</button>
+</form>
+
+<a href="/note/list">Повернутися до списку</a>
+
+</body>
+</html>

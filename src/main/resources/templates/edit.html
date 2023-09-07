@@ -1,71 +1,25 @@
-<!-- edit.html -->
-
 <!DOCTYPE html>
 <html lang="uk-UA">
 <head>
     <meta charset="UTF-8">
     <title>Редагування нотатки</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">Notatki</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<h1>Редагування нотатки</h1>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/note/list">Список</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/note/edit">Редагування</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<form method="post" th:action="@{/note/edit}">
+    <input type="hidden" name="id" th:value="${note.id}">
+    <label for="title">Назва:</label>
+    <input type="text" id="title" name="title" th:value="${note.title}">
+    <br>
+    <label for="content">Зміст:</label>
+    <textarea id="content" name="content" th:text="${note.content}"></textarea>
+    <br>
+    <button type="submit">Зберегти</button>
+</form>
 
-<div class="container">
+<a href="/note/list">Повернутися до списку</a>
 
-    <main role="main">
-
-        <section class="py-5 text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Редагування нотатки</h1>
-                <p class="lead">
-                    Тут ви можете змінити текст нотатки.
-                </p>
-            </div>
-        </section>
-
-        <section class="py-5">
-            <div class="container">
-
-                <form action="/note/edit" method="post">
-                    <input type="hidden" name="id" value="${note.id}">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Назва</label>
-                        <input type="text" class="form-control" id="title" name="title" value="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Текст</label>
-                        <textarea class="form-control" id="content" name="content"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Зберегти</button>
-                </form>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
